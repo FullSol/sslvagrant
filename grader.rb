@@ -2,8 +2,9 @@ puts "Welcome to the Grader application."
 
 # Define the grader class
 class Grader
-    def initialize(name, score)
+    def initialize(name, assignment, score)
         @@name = name
+        @@assignment = assignment
         @@score = score
     end
 
@@ -24,13 +25,16 @@ class Grader
              grade = "an F"
         end
 
-        puts "#@@name's grade is " + grade
+        puts "#@@name's grade for assignemnt: " + @@assignment + " is " + grade
     end
 end
     
 #Request the name of the student and score from the user
 puts "What is the student's name?"
 name = gets
+
+puts "What is the name of the assignment?"
+assignment = gets
 
 integerCheck = false
 
@@ -52,7 +56,7 @@ while !integerCheck
 end
 
 #initiate the object
-g = Grader.new(name, score)
+g = Grader.new(name, assignment, score)
 
 #Run the method to print the grade
 g.getGrade()
