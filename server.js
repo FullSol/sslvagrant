@@ -40,7 +40,6 @@ http.createServer((req, res) => {
                     })
                      if(ext == '.html'){
                          res.write('<script>var page = "' + page + '</script>')
-                         res.write('<script>document.getElementById("current-nav").style.color="white"</script>')
                     }
                     res.end(data, 'utf8')
                 }
