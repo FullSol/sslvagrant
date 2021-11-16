@@ -1,0 +1,71 @@
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-block d-lg-none">Clarence Taylor</span>
+        <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav">
+            <% if(pagename == 'index') {%>
+            <li class="nav-item"><a id='current-nav' class="nav-link js-scroll-trigger" href="/">About</a></li>
+            <%} else {%>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">About</a></li>
+            <%}%>
+            
+            <% if(pagename == 'experience') {%>
+            <li class="nav-item"><a id='current-nav' class="nav-link js-scroll-trigger" href="/experience">Experience</a></li>
+            <%} else {%>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/experience">Experience</a></li>
+            <%}%>
+            
+            <% if(pagename == 'education') {%>
+            <li class="nav-item"><a id='current-nav' class="nav-link js-scroll-trigger" href="/education">Education</a></li>
+            <%} else {%>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/education">Education</a></li>
+            <%}%>
+            
+            <% if(pagename == 'skills') {%>
+            <li class="nav-item"><a id='current-nav' class="nav-link js-scroll-trigger" href="/skills">Skills</a></li>
+            <%} else {%>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/skills">Skills</a></li>
+            <%}%>
+            
+            <% if(pagename == 'interests') {%>
+            <li class="nav-item"><a id='current-nav' class="nav-link js-scroll-trigger" href="/interests">Interests</a></li>
+            <%} else {%>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/interests">Interests</a></li>
+            <%}%>
+            
+            <% if(pagename == 'awards') {%>
+            <li class="nav-item"><a id='current-nav' class="nav-link js-scroll-trigger" href="/awards">Awards</a></li>
+            <%} else {%>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/awards">Awards</a></li>
+            <%}%>
+        </ul>
+    </div>
+    <div style='z-index:12;
+    display:block;
+    text-align: right;
+    background-color: #333a40;
+    margin-right: 0rem;
+    padding-right: 1.25rem;
+    color: gray;
+    position: absolute;
+    width: 16rem;
+    margin-top: 3.5rem;
+    padding-top: .5rem;
+    right: 1rem;
+    border-radius: .75rem;
+    padding: .75rem;
+    font-size: 1rem;
+    '>
+        <form action = 'login' method = 'POST'>
+            <input type='email' name='email' placeholder='Email' />
+            <input type='password' name='password' placeholder='Password' />
+            <div style='padding-top: .4rem;'>
+                <button type='submit'>Submit</button>
+            </div>
+        </form>
+    </div>
+</nav>
