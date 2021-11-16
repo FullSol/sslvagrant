@@ -18,6 +18,13 @@
     <body id="page-top">
        <%- include('includes/nav') %>
         <!-- Page Content-->
+        <div style='float: right;padding-right:2.5rem;'>
+            <% if(typeof(errs) != 'undefined'){%>
+                <% errs.forEach((error) => {%>
+                    <br /><span stye='color:red; font-weight:bolder'> <%=error%> </span>
+                <%})%>
+            <%}%>
+        </div>
         <div class="container-fluid p-0">
             <!-- About-->
             <section class="resume-section" id="about">
