@@ -148,6 +148,7 @@ router.post('/register', (req, res) => {
        errors.push('Please provide consent to move forward.')
     }
 
+    //Log out stuff
     console.log(req.body.consent)
 
     // Render the index page after submission
