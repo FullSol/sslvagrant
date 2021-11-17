@@ -3,6 +3,7 @@ const express = require('express')
 const ejs = require('ejs')
 const bodyParser = require('body-parser')
 const request = require('request')
+const session = require('express-session')
 
 const router = express.Router()
 const app = express()
@@ -148,7 +149,7 @@ router.post('/register', (req, res) => {
        errors.push('Please provide consent to move forward.')
     }
 
-    //Log out stuff
+    //Log out stuff 
     console.log(req.body.consent)
 
     // Render the index page after submission
