@@ -42,9 +42,17 @@
             <%} else {%>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/awards">Awards</a></li>
             <%}%>
+            <% if(typeof(sess) != 'undefined' && sess.loggedin == true){%>
+                <% if(pagename == 'profile') {%>
+                    <li class="nav-item"><a id='current-nav' class="nav-link js-scroll-trigger" href="/profile">Profile</a></li>
+                    <%} else {%>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/profile">Profile</a></li>
+                <%}%>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/logout">Logout</a></li>
+            <%}%>
         </ul>
     </div>
-        <div style='z-index:12;
+        <!-- <div style='z-index:12;
             display:block;
             text-align: right;
             background-color: #333a40;
@@ -152,8 +160,8 @@
                     <button type='submit'>Submit</button>
                 </div>
             </form>
-        </div>
-        <!-- <div style='z-index:12;
+        </div> -->
+        <div style='z-index:12;
             display:block;
             text-align: right;
             background-color: #333a40;
@@ -176,5 +184,5 @@
                     <button type='submit'>Submit</button>
                 </div>
             </form>
-        </div> -->
+        </div>
 </nav>

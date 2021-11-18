@@ -27,76 +27,118 @@ let sess
 router.get('/', (req, res) => {
     sess = req.session
     res.render('index', {
-        pagename: 'index'
+        pagename: 'index',
+        sess: sess,
     })
 })
 
 router.get('/awards', (req, res) => {
     sess = req.session
     res.render('awards', {
-        pagename: 'awards'
+        pagename: 'awards',
+        sess: sess,
     })
 })
 
 router.get('/education', (req, res) => {
     sess = req.session
     res.render('education', {
-        pagename: 'education'
+        pagename: 'education',
+        sess: sess,
     })
 })
 
 router.get('/experience', (req, res) => {
     sess = req.session
     res.render('experience', {
-        pagename: 'experience'
+        pagename: 'experience',
+        sess: sess,
     })
 })
 
 router.get('/interests', (req, res) => {
     sess = req.session
     res.render('interests', {
-        pagename: 'interests'
+        pagename: 'interests',
+        sess: sess,
     })
 })
 
 router.get('/skills', (req, res) => {
     sess = req.session
     res.render('skills', {
-        pagename: 'skills'
+        pagename: 'skills',
+        sess: sess,
+    })
+})
+
+router.get('/profile', (req, res) => {
+    sess = req.session
+    if(typeof(sess) == 'undefined' || sess.loggedin != true){
+        let errors = ['Not an authenticated used.']
+        res.render('index', {
+            pagename: 'index',
+            errs: errors,
+        })
+    } else {
+        res.render('profile', {
+            pagename: 'profile',
+            sess: sess,
+        })
+    }
+})
+
+router.get('/logout', (req, res) => {
+    sess = req.session
+    sess.destroy((err) => {
+        res.redirect('/')
     })
 })
 
 router.post('/login', (req, res) => {
     console.log(req.body)
     let errors = [] ;
+    const email = req.body.email.trim()
+    const password = req.body.password.trim()
     
     //validate email not blank
-    if(req.body.email.trim() == ''){
+    if(email == ''){
         errors.push('Email cannot be blank.')
     }
 
     //validate password not blank
-    if(req.body.password.trim() == ''){
+    if(password == ''){
         errors.push('Password cannot be blank.')
     }
 
     //email in correct format
-    if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(req.body.email.trim())){
+    if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email)){
         errors.push('Email must be in a valid format.')
     }
 
     //validate password in correct format
-    if(!/^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/.test(req.body.password)){
+    if(!/^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/.test(password)){
         errors.push('Password is invalid format.')
     }
 
     console.log(errors)
 
     // Render the index page after submission
-    res.render('index', {
-        pagename: 'index', 
+    //create condition if the email == 'mike@aol.com' and password == 'SuperMario1A!
+    if(password == 'SuperMario1A!' && email == 'mike@aol.com'){
+        sess = req.session
+        sess.loggedin = true
+        res.render('profile', {
+        pagename: 'profile',
+        sess: sess,
+    })
+    } else {
+        errors.push('Invalid User')
+        res.render('index', {
+        pagename: 'index',
         errs: errors,
     })
+    }
 })
 
 router.post('/register', (req, res) => {
@@ -172,6 +214,7 @@ router.post('/register', (req, res) => {
     })
 
 })
+
 
 
 //declare any static file location
