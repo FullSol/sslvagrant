@@ -8,6 +8,11 @@ const session = require('express-session')
 const router = express.Router()
 const app = express()
 
+app.use(session({
+    secret: 'superDooperSafe', 
+    saveUniinitialized: true, 
+    resave: true,
+}))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ 
     extended: true 
@@ -16,38 +21,46 @@ app.use(bodyParser.urlencoded({
 app.set('view engine', 'ejs')
 app.engine('ejs', require('ejs').__express)
 
+let sess
+
 //routes
 router.get('/', (req, res) => {
+    sess = req.session
     res.render('index', {
         pagename: 'index'
     })
 })
 
 router.get('/awards', (req, res) => {
+    sess = req.session
     res.render('awards', {
         pagename: 'awards'
     })
 })
 
 router.get('/education', (req, res) => {
+    sess = req.session
     res.render('education', {
         pagename: 'education'
     })
 })
 
 router.get('/experience', (req, res) => {
+    sess = req.session
     res.render('experience', {
         pagename: 'experience'
     })
 })
 
 router.get('/interests', (req, res) => {
+    sess = req.session
     res.render('interests', {
         pagename: 'interests'
     })
 })
 
 router.get('/skills', (req, res) => {
+    sess = req.session
     res.render('skills', {
         pagename: 'skills'
     })
@@ -159,6 +172,7 @@ router.post('/register', (req, res) => {
     })
 
 })
+
 
 //declare any static file location
 app.use(express.static('views/'));
